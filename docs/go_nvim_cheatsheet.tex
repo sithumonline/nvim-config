@@ -1,0 +1,137 @@
+\documentclass[9pt,twocolumn]{extarticle}
+\usepackage[margin=0.5in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[scaled=0.92]{helvet}
+\renewcommand{\familydefault}{\sfdefault}
+\usepackage{parskip}
+\usepackage{enumitem}
+\setlist{nosep,leftmargin=1.1em}
+\usepackage{titlesec}
+\titlespacing*{\section}{0pt}{0.4em}{0.2em}
+\titlespacing*{\subsection}{0pt}{0.3em}{0.1em}
+\titleformat{\section}{\large\bfseries}{}{0pt}{}
+\titleformat{\subsection}{\normalsize\bfseries}{}{0pt}{}
+\usepackage{hyperref}
+\hypersetup{hidelinks}
+
+% Keep key chords on one line and render monospaced
+\newcommand{\key}[1]{\mbox{\texttt{#1}}}
+\newcommand{\leader}{\key{<Space>}} % your mapleader
+
+\begin{document}
+\begin{center}
+{\LARGE Neovim x Go - Daily Cheat Sheet}\\
+{\small Leader = \leader\ (Space). Telescope, LSP, nvim-cmp, LuaSnip}
+\end{center}
+
+\section{Modes}
+\begin{itemize}
+  \item Normal: \key{Esc} (default mode)
+  \item Insert: \key{i} (before), \key{a} (after), \key{o}/\key{O} (new line)
+  \item Visual: \key{v} (char), \key{V} (line), \key{Ctrl+v} (block)
+\end{itemize}
+
+\section{Files, Save, Quit}
+\begin{itemize}
+  \item Save: \leader\key{w} or \key{:w}
+  \item Quit: \leader\key{q} or \key{:q}
+  \item Save+Quit: \key{:wq}
+  \item Open file: \key{:e} \emph{path}
+  \item Recent files (Telescope): \leader\key{fr}
+\end{itemize}
+
+\section{Movement}
+\begin{itemize}
+  \item Basic: \key{h/j/k/l}
+  \item Start/End of line: \key{0}/\key{\$}
+  \item Words: \key{w}/\key{b}/\key{e}
+  \item File: \key{gg}/\key{G}
+  \item Jumps: \key{Ctrl+o} (back), \key{Ctrl+i} (forward)
+  \item Search: \key{/}pattern\key{Enter}, next/prev: \key{n}/\key{N}
+\end{itemize}
+
+\section{Edit Essentials}
+\begin{itemize}
+  \item Undo/Redo: \key{u}/\key{Ctrl+r}
+  \item Delete: \key{x} (char), \key{dd} (line), \key{dw} (word)
+  \item Change (delete then insert): \key{cw}, \key{cc}, \key{ciw}
+  \item Copy/Paste: \key{yy}/\key{p} (after), \key{P} (before)
+  \item Repeat last change: \key{.}
+  \item Indent: Visual select then \key{>} / \key{<}
+  \item Join line below: \key{J}
+\end{itemize}
+
+\section{Windows \& Buffers}
+\begin{itemize}
+  \item Split: \key{:sp} (horizontal), \key{:vsp} (vertical)
+  \item Move focus: \key{Ctrl+h/j/k/l}
+  \item Close split (window): \key{:q}
+  \item Buffers list: \leader\key{fb}
+  \item Next/Prev buffer: \key{:bnext}/\key{:bprev}
+  \item Close buffer: \leader\key{bd}
+\end{itemize}
+
+\section{Telescope (Fuzzy Finder)}
+\begin{itemize}
+  \item Find files: \leader\key{ff}
+  \item Live grep: \leader\key{fg}
+  \item Buffers: \leader\key{fb}
+  \item Help tags: \leader\key{fh}
+  \item Recent files: \leader\key{fr}
+  \item In Telescope: \key{Ctrl+j}/\key{Ctrl+k} move, \key{Enter} to open
+\end{itemize}
+
+\section{Go LSP (gopls)}
+\begin{itemize}
+  \item Go to definition: \key{gd}
+  \item Declaration: \key{gD}
+  \item Implementation: \key{gi}
+  \item References (Telescope): \key{gr}
+  \item Hover docs: \key{K}
+  \item Rename symbol: \leader\key{rn}
+  \item Code actions: \leader\key{ca}
+  \item Format buffer: \leader\key{f} (also on save)
+  \item Diagnostics: next/prev \key{]d}/\key{[d}
+\end{itemize}
+
+\section{Completion (nvim-cmp + LuaSnip)}
+\begin{itemize}
+  \item Trigger menu: \key{Ctrl+Space}
+  \item Select item: \key{Ctrl+n}/\key{Ctrl+p}
+  \item Confirm: \key{Enter} (no auto-select)
+  \item Snippets: \key{Tab} expand/jump, \key{Shift+Tab} jump back
+  \item Abort: \key{Ctrl+e}
+\end{itemize}
+
+\section{Search \& Replace}
+\begin{itemize}
+  \item Word under cursor: \key{*}/\key{\#}
+  \item File-wide replace (confirm): \key{:\%s/old/new/gc}
+  \item Line replace: \key{:s/old/new/g}
+\end{itemize}
+
+\section{Go Commands (quick)}
+\begin{itemize}
+  \item Run current pkg tests: \key{:!go test} then \key{Enter}
+  \item All tests: \key{:!go test ./...} then \key{Enter}
+  \item Build: \key{:!go build} then \key{Enter}
+  \item Run file (if \texttt{package main}): \key{:!go run \%} then \key{Enter}
+  \item Terminal split: \key{:term}, exit terminal-mode: \key{Ctrl+\textbackslash}, \key{Ctrl+n}
+\end{itemize}
+
+\section{Quality of Life (in this setup)}
+\begin{itemize}
+  \item System clipboard: \texttt{set clipboard=unnamedplus}
+  \item Relative numbers, cursor line, sign column
+  \item Smart splits: open right/below; move with \key{Ctrl+h/j/k/l}
+  \item Completion menu tuned: \texttt{completeopt=menu,menuone,noselect}
+\end{itemize}
+
+\section{Mini Survival}
+\begin{itemize}
+  \item Command-line history: \key{:} then \key{Up/Down}
+  \item Redraw screen: \key{Ctrl+l}
+  \item Toggle paste: \key{:set paste} / \key{:set nopaste}
+\end{itemize}
+
+\end{document}
