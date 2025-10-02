@@ -112,3 +112,6 @@ lua require('sithumonline/cmp')
 set background=dark
 lua require('sithumonline/colors')
 
+" Wakatime plugin for time tracking
+Plug 'wakatime/vim-wakatime'
+
