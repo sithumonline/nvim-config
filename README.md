@@ -7,6 +7,7 @@ A clean, fast, and productive Neovim setup optimized for Go development with LSP
 - **🎯 Go-First**: Optimized for Go development with `gopls` LSP
 - **🔍 Telescope**: Fast fuzzy finding for files, grep, buffers, and more
 - **💡 Smart Completion**: Enhanced `nvim-cmp` with LSP, snippets, and ghost text
+- **📝 Grammar & Spell Check**: Harper-LS for writing and documentation
 - **🎨 High-Contrast Theme**: Tokyonight with LSP-friendly diagnostics
 - **⚡ Minimal & Fast**: Only essential plugins, quick startup
 - **🛠️ Quality of Life**: Sensible defaults, ergonomic keymaps
@@ -20,6 +21,7 @@ A clean, fast, and productive Neovim setup optimized for Go development with LSP
 | [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim)                       | Fuzzy finder                |
 | [telescope-fzf-native.nvim](https://github.com/nvim-telescope/telescope-fzf-native.nvim) | FZF sorter for Telescope    |
 | [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig)                               | LSP configuration           |
+| [Harper-LS](https://github.com/elijah-potter/harper)                                     | Grammar and spell checking  |
 | [nvim-cmp](https://github.com/hrsh7th/nvim-cmp)                                          | Completion engine           |
 | [LuaSnip](https://github.com/L3MON4D3/LuaSnip)                                           | Snippet engine              |
 | [friendly-snippets](https://github.com/rafamadriz/friendly-snippets)                     | Snippet collection          |
@@ -34,6 +36,13 @@ A clean, fast, and productive Neovim setup optimized for Go development with LSP
 - Go 1.19+ with `gopls` installed:
   ```bash
   go install golang.org/x/tools/gopls@latest
+  ```
+- Harper-LS for grammar checking:
+  ```bash
+  # Using npm
+  npm install -g @harper-ls/harper-ls
+  # Or using cargo
+  cargo install harper-ls --locked
   ```
 
 ### Setup
@@ -94,6 +103,7 @@ A clean, fast, and productive Neovim setup optimized for Go development with LSP
 | `<leader>rn` | Rename symbol               |
 | `<leader>ca` | Code actions                |
 | `<leader>f`  | Format buffer               |
+| `<leader>hf` | Harper grammar fix          |
 | `]d` / `[d`  | Next/previous diagnostic    |
 
 #### Window Management
@@ -132,6 +142,7 @@ Uses **Tokyonight Night** for high contrast and readability:
 ├── lua/sithumonline/
 │   ├── telescope.lua          # Telescope setup
 │   ├── lsp_go.lua            # Go LSP configuration
+│   ├── harper.lua            # Harper-LS grammar checking
 │   ├── cmp.lua               # Completion setup
 │   └── colors.lua            # Theme configuration
 ├── docs/
@@ -183,6 +194,12 @@ Add custom mappings in `init.vim` or the respective Lua files.
 
 - Update plugins: `:PlugUpdate`
 - Check sources: `:CmpStatus`
+
+### Harper-LS Issues
+
+- Ensure Harper-LS is installed: `which harper-ls`
+- Toggle Harper: `:HarperToggle`
+- Check LSP status: `:LspInfo`
 
 ## 📚 Learning Resources
 

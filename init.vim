@@ -66,6 +66,10 @@ set mouse=a
 set ignorecase
 set smartcase
 
+" Enable spell checking
+set spell
+set spelllang=en_us
+
 " Simple, handy keymaps
 nnoremap <leader>w :w<CR>
 nnoremap <leader>q :q<CR>
@@ -106,6 +110,7 @@ call plug#end()
 
 lua require('sithumonline/telescope')
 lua require('sithumonline/lsp_go')
+lua require('sithumonline/harper')
 lua require('sithumonline/cmp')
 
 " Use this for dark color schemes and load theme config
